@@ -49,6 +49,14 @@ function update_metrics() {
 	months_counter_output.innerText = '~ ' + String((ITERATION_COUNTER / 3) / 4).split(/[,.]/gm)[0]
 }
 
+function reset_metrics() {
+	ITERATION_COUNTER = 1
+	iteration_counter_output.innerText = String(1)
+	days_counter_output.innerText = String(0)
+	weeks_counter_output.innerText = String(0)
+	months_counter_output.innerText = '~ ' + String(0)
+}
+
 function run(reinvest) {
 	const inputs = getInputs()
 	result_output.innerText = compute(
@@ -63,6 +71,8 @@ function run(reinvest) {
 	if (reinvest===true) {
 		console.log(`reinvest=${reinvest} - updating metrics`)
 		update_metrics()
+	} else {
+		reset_metrics()
 	}
 }
 
