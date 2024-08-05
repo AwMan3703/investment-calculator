@@ -60,7 +60,8 @@ function run(reinvest) {
 		inputs.sellfee,
 		inputs.minsellfee
 	)
-	if (reinvest) {
+	if (reinvest===true) {
+		console.log(`reinvest=${reinvest} - updating metrics`)
 		update_metrics()
 	}
 }
