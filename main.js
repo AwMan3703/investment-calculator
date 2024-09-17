@@ -24,13 +24,13 @@ const percentageOf = (whole, percentage) => (whole / 100) * percentage
 
 const getInputs = () => {
 	return {
-		investment : parseFloat(investment_input.value),
-		startprice : parseFloat(start_price_input.value),
-		endprice : parseFloat(end_price_input.value),
-		buyfee : parseFloat(buy_fee_input.value),
-		sellfee : parseFloat(sell_fee_input.value),
-		minbuyfee : parseFloat(min_buy_fee_input.value),
-		minsellfee : parseFloat(min_sell_fee_input.value)
+		investment : parseFloat(investment_input.value) || 0,
+		startprice : parseFloat(start_price_input.value) || 0,
+		endprice : parseFloat(end_price_input.value) || 0,
+		buyfee : parseFloat(buy_fee_input.value) || 0,
+		sellfee : parseFloat(sell_fee_input.value) || 0,
+		minbuyfee : parseFloat(min_buy_fee_input.value) || 0,
+		minsellfee : parseFloat(min_sell_fee_input.value) || 0,
 	}
 }
 
