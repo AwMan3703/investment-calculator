@@ -37,7 +37,7 @@ const getInputs = () => {
 		sellfee : parseFloat(sell_fee_input.value) || 0,
 		minbuyfee : parseFloat(min_buy_fee_input.value) || 0,
 		minsellfee : parseFloat(min_sell_fee_input.value) || 0,
-		reinvestpercentage : parseFloat(reinvest_percentage_input.value) || 0,
+		reinvestpercentage : parseFloat(reinvest_percentage_input.value) || 100,
 		reinvestaddamount : parseFloat(reinvest_add_amount_input.value) || 0
 	}
 }
