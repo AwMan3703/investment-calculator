@@ -50,8 +50,8 @@ function update_metrics() {
 }
 
 function reset_metrics() {
-	ITERATION_COUNTER = 1
-	iteration_counter_output.innerText = String(1)
+	ITERATION_COUNTER = 0
+	iteration_counter_output.innerText = String(0)
 	days_counter_output.innerText = String(0)
 	weeks_counter_output.innerText = String(0)
 	months_counter_output.innerText = '~ ' + String(0)
@@ -73,6 +73,7 @@ function run(reinvest) {
 		update_metrics()
 	} else {
 		reset_metrics()
+		update_metrics()
 	}
 }
 
