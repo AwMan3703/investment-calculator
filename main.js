@@ -30,7 +30,7 @@ const getInputs = () => {
 	return {
 		investment : parseFloat(investment_input.value) || 0,
 		startprice : parseFloat(start_price_input.value) || 0,
-		leveragemultiplier : parseFloat(leverage_multiplier_input.value) || 0,
+		leveragemultiplier : parseFloat(leverage_multiplier_input.value) || 1,
 		endprice : parseFloat(end_price_input.value) || 0,
 		buyfee : parseFloat(buy_fee_input.value) || 0,
 		sellfee : parseFloat(sell_fee_input.value) || 0,
