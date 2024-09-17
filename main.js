@@ -72,6 +72,7 @@ function run(reinvest) {
 		console.log(`reinvest=${reinvest} - updating metrics`)
 		update_metrics()
 	} else {
+		console.log(`reinvest=${reinvest} - resetting metrics`)
 		reset_metrics()
 		update_metrics()
 	}
