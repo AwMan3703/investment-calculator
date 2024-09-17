@@ -36,9 +36,7 @@ const getInputs = () => {
 		buyfee : parseFloat(buy_fee_input.value) || 0,
 		sellfee : parseFloat(sell_fee_input.value) || 0,
 		minbuyfee : parseFloat(min_buy_fee_input.value) || 0,
-		minsellfee : parseFloat(min_sell_fee_input.value) || 0,
-		reinvestpercentage : parseFloat(reinvest_percentage_input.value) || 100,
-		reinvestaddamount : parseFloat(reinvest_add_amount_input.value) || 0
+		minsellfee : parseFloat(min_sell_fee_input.value) || 0
 	}
 }
 
@@ -71,15 +69,8 @@ function reset_metrics() {
 function run(reinvest) {
 	const inputs = getInputs()
 	
-	let invest_amount = reinvest
-		? percentageOf(inputs.investment, inputs.reinvestpercentage)
-		: inputs.investment
-	invest_amount = reinvest
-		? invest_amount + inputs.reinvestaddamount
-		: invest_amount
-	
 	result_output.innerText = compute(
-		invest_amount,
+		inputs.investment,
 		inputs.startprice,
 		inputs.useleverage ? inputs.leveragemultiplier : 1,
 		inputs.endprice,
@@ -108,6 +99,8 @@ start_button.onclick = _ => {
 	run(false)
 }
 reinvest_button.onclick = _ => {
-	investment_input.value = result_output.innerText.split(/[,.]/gm)[0]
+	let invest_amount = percentageOf(parseFloat(result_output.innerText), parseFloat(reinvest_percentage_input.value) || 100)
+	invest_amount += parseFloat(reinvest_add_amount_input.value) || 0
+	investment_input.value = Math.floor(invest_amount)
 	run(true)
 }
