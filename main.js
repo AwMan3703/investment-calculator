@@ -35,7 +35,8 @@ const getInputs = () => {
 }
 
 function compute(investment, start_price, end_price, buy_fee_pc, min_buy_fee, sell_fee_pc, min_sell_fee) {
-	const postFeeInvestment = investment - Math.max(min_buy_fee, percentageOf(investment, buy_fee_pc))
+	const preFeeInvestment = investment
+	const postFeeInvestment = preFeeInvestment - Math.max(min_buy_fee, percentageOf(preFeeInvestment, buy_fee_pc))
 	const assets = postFeeInvestment / start_price
 	const preFeeGain = assets * end_price
 	return preFeeGain - Math.max(min_sell_fee, percentageOf(preFeeGain, sell_fee_pc))
