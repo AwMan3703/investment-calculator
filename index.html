@@ -13,7 +13,11 @@
 		<input type="number" placeholder="Entry price" name="start-price" id="start-price">€
 		with a
 		<input type="number" placeholder="0,25" name="buy-fee" id="buy-fee" min="0" max="100">% fee (min fee =
-		<input type="number" placeholder="1" name="buy-min-fee" id="buy-min-fee">€)
+		<input type="number" placeholder="1" name="buy-min-fee" id="buy-min-fee">€) <br><br>
+		<input type="checkbox" name="leverage-checkbox" id="leverage-checkbox">
+		<label for="leverage-checkbox">Using leverage?</label> <br>
+		Leverage multiplier:
+		<input type="number" placeholder="1" disabled name="leverage-multiplier" id="leverage-multiplier" min="1">X
 		<hr>
 		<strong>Sell</strong> when the asset is valued at
 		<input type="number" placeholder="Exit price" name="end-price" id="end-price">€

@@ -1,6 +1,8 @@
 
 const investment_input = document.getElementById("investment");
 const start_price_input = document.getElementById("start-price");
+const leverage_checkbox = document.getElementById("leverage-checkbox");
+const leverage_multiplier_input = document.getElementById("leverage-multiplier");
 const end_price_input = document.getElementById("end-price");
 const buy_fee_input = document.getElementById("buy-fee");
 const sell_fee_input = document.getElementById("sell-fee");
@@ -28,6 +30,7 @@ const getInputs = () => {
 	return {
 		investment : parseFloat(investment_input.value) || 0,
 		startprice : parseFloat(start_price_input.value) || 0,
+		leveragemultiplier : parseFloat(leverage_multiplier_input.value) || 0,
 		endprice : parseFloat(end_price_input.value) || 0,
 		buyfee : parseFloat(buy_fee_input.value) || 0,
 		sellfee : parseFloat(sell_fee_input.value) || 0,
@@ -38,12 +41,14 @@ const getInputs = () => {
 	}
 }
 
-function compute(investment, start_price, end_price, buy_fee_pc, min_buy_fee, sell_fee_pc, min_sell_fee) {
-	const preFeeInvestment = investment
-	const postFeeInvestment = preFeeInvestment - Math.max(min_buy_fee, percentageOf(preFeeInvestment, buy_fee_pc))
+function compute(investment, start_price, leverage_multiplier, end_price, buy_fee_pc, min_buy_fee, sell_fee_pc, min_sell_fee) {
+	const leveragedInvestment = investment * leverage_multiplier
+	const postFeeInvestment = leveragedInvestment - Math.max(min_buy_fee, percentageOf(leveragedInvestment, buy_fee_pc))
 	const assets = postFeeInvestment / start_price
-	const preFeeGain = assets * end_price
-	return preFeeGain - Math.max(min_sell_fee, percentageOf(preFeeGain, sell_fee_pc))
+	const returnOnInvestment = assets * end_price
+	const postFeeReturn = returnOnInvestment - Math.max(min_sell_fee, percentageOf(returnOnInvestment, sell_fee_pc))
+	const unleveragedProfit = (postFeeReturn - leveragedInvestment)
+	return investment + unleveragedProfit
 }
 
 function update_metrics() {
@@ -75,6 +80,7 @@ function run(reinvest) {
 	result_output.innerText = compute(
 		invest_amount,
 		inputs.startprice,
+		inputs.leveragemultiplier,
 		inputs.endprice,
 		inputs.buyfee,
 		inputs.minbuyfee,
@@ -92,6 +98,10 @@ function run(reinvest) {
 }
 
 
+
+leverage_checkbox.onclick = _ => {
+	leverage_multiplier_input.toggleAttribute('disabled')
+}
 
 start_button.onclick = run
 reinvest_button.onclick = _ => {
