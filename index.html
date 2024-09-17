@@ -7,29 +7,29 @@
 		<link rel="shortcut icon" href="src/icon.ico" type="image/x-icon">
 	</head>
 	<body>
-		Invest
-		<input type="number" name="investment" id="investment">€
+		<strong>Buy</strong> for
+		<input type="number" placeholder="100" name="investment" id="investment">€
 		when the asset is valued at
 		<input type="number" name="start-price" id="start-price">€
 		with a
-		<input type="number" name="buy-fee" id="buy-fee" min="0" max="100">% fee (min fee =
-		<input type="number" name="buy-min-fee" id="buy-min-fee" value="1">€)
+		<input type="number" placeholder="0,25" name="buy-fee" id="buy-fee" min="0" max="100">% fee (min fee =
+		<input type="number" placeholder="1" name="buy-min-fee" id="buy-min-fee">€)
 		<hr>
-		Sell when the asset is valued at
+		<strong>Sell</strong> when the asset is valued at
 		<input type="number" name="end-price" id="end-price">€
 		with a
-		<input type="number" name="sell-fee" id="sell-fee" min="0" max="100">% fee (min fee =
-		<input type="number" name="sell-min-fee" id="sell-min-fee" value="1">€)
+		<input type="number" placeholder="0,25" name="sell-fee" id="sell-fee" min="0" max="100">% fee (min fee =
+		<input type="number" placeholder="1" name="sell-min-fee" id="sell-min-fee">€)
 		<hr>
 		<button id="button-start">Compute</button>
-		Profit: <span id="profit">0</span>€
+		<h3>Return: <span id="profit">0</span>€</h3>
 		<button id="button-reinvest">Reinvest profits (drop cents)</button>
 		<hr>
 		Investments: <span id="iteration-counter">0</span> <br>
-		Days passed (avoiding Pattern Day Trader flagging): <span id="days-counter-pdt">0</span>
+		Days passed (avoiding Pattern Day Trader flagging*): <span id="days-counter-pdt">0</span>
 		/ Weeks: <span id="weeks-counter-pdt">0</span>
 		/ Months: <span id="months-counter-pdt">0</span> <br>
-		<sup>Regulations demand that if you have less than 25k you may not buy more than 3 times per week, else you be flagged as a Pattern Day Trader and your account suspended</sup>
+		<sup>*Regulations demand that if you have less than 25k you may not buy more than 3 times per week, else you be flagged as a Pattern Day Trader and your account suspended</sup>
 
 
 		<script src="main.js"></script>
