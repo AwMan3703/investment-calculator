@@ -6,6 +6,8 @@ const buy_fee_input = document.getElementById("buy-fee");
 const sell_fee_input = document.getElementById("sell-fee");
 const min_buy_fee_input = document.getElementById("buy-min-fee");
 const min_sell_fee_input = document.getElementById("sell-min-fee");
+const reinvest_percentage_input = document.getElementById("reinvest-percentage");
+const reinvest_add_amount_input = document.getElementById("reinvest-add-amount");
 
 const start_button = document.getElementById("button-start");
 const reinvest_button = document.getElementById("button-reinvest");
@@ -31,6 +33,8 @@ const getInputs = () => {
 		sellfee : parseFloat(sell_fee_input.value) || 0,
 		minbuyfee : parseFloat(min_buy_fee_input.value) || 0,
 		minsellfee : parseFloat(min_sell_fee_input.value) || 0,
+		reinvestpercentage : parseFloat(reinvest_percentage_input.value) || 0,
+		reinvestaddamount : parseFloat(reinvest_add_amount_input.value) || 0
 	}
 }
 
@@ -60,8 +64,16 @@ function reset_metrics() {
 
 function run(reinvest) {
 	const inputs = getInputs()
+	
+	let invest_amount = reinvest
+		? percentageOf(inputs.investment, inputs.reinvestpercentage)
+		: inputs.investment
+	invest_amount = reinvest
+		? invest_amount + inputs.reinvestaddamount
+		: invest_amount
+	
 	result_output.innerText = compute(
-		inputs.investment,
+		invest_amount,
 		inputs.startprice,
 		inputs.endprice,
 		inputs.buyfee,
