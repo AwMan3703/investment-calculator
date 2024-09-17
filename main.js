@@ -30,6 +30,7 @@ const getInputs = () => {
 	return {
 		investment : parseFloat(investment_input.value) || 0,
 		startprice : parseFloat(start_price_input.value) || 0,
+		useleverage : leverage_checkbox.checked,
 		leveragemultiplier : parseFloat(leverage_multiplier_input.value) || 1,
 		endprice : parseFloat(end_price_input.value) || 0,
 		buyfee : parseFloat(buy_fee_input.value) || 0,
@@ -80,7 +81,7 @@ function run(reinvest) {
 	result_output.innerText = compute(
 		invest_amount,
 		inputs.startprice,
-		inputs.leveragemultiplier,
+		inputs.useleverage ? inputs.leveragemultiplier : 1,
 		inputs.endprice,
 		inputs.buyfee,
 		inputs.minbuyfee,
