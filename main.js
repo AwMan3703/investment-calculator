@@ -103,7 +103,9 @@ leverage_checkbox.onclick = _ => {
 	leverage_multiplier_input.toggleAttribute('disabled')
 }
 
-start_button.onclick = run
+start_button.onclick = _ => {
+	run(false)
+}
 reinvest_button.onclick = _ => {
 	investment_input.value = result_output.innerText.split(/[,.]/gm)[0]
 	run(true)
