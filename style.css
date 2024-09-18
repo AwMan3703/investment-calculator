@@ -1,0 +1,25 @@
+body.darkmode,
+body.darkmode * {
+  color: white;
+  background-color: #221e1e;
+}
+hr {
+  opacity: 0.3;
+}
+.fee-inputs {
+  opacity: 0.75;
+  font-style: italic;
+}
+.profit-counter.positive {
+  color: green;
+}
+.profit-counter.negative {
+  color: red;
+}
+.profit-counter.zero {
+  opacity: 0.5;
+}
+#metrics {
+  opacity: 0.5;
+}
+/*# sourceMappingURL=style.css.map */
