@@ -15,6 +15,7 @@ const start_button = document.getElementById("button-start");
 const reinvest_button = document.getElementById("button-reinvest");
 
 const result_output = document.getElementById("profit");
+
 const iteration_counter_output = document.getElementById("iteration-counter");
 const days_counter_output = document.getElementById("days-counter-pdt");
 const weeks_counter_output = document.getElementById("weeks-counter-pdt");

@@ -18,13 +18,16 @@
 		<label for="leverage-checkbox">Using leverage?</label> <br>
 		Leverage multiplier:
 		<input type="number" placeholder="1" disabled name="leverage-multiplier" id="leverage-multiplier" min="1">X
+
 		<hr>
+
 		<strong>Sell</strong> when the asset is valued at
 		<input type="number" placeholder="Exit price" name="end-price" id="end-price">€
 		with a
 		<input type="number" placeholder="0,25" name="sell-fee" id="sell-fee" min="0" max="100">% fee (min fee =
 		<input type="number" placeholder="1" name="sell-min-fee" id="sell-min-fee">€)
 		<hr>
+
 		<button id="button-start">Compute</button>
 		<h3>Return: <span id="profit">0</span>€</h3>
 		<button id="button-reinvest">Reinvest (drop cents)</button> <br>
@@ -32,6 +35,7 @@
 		<input type="number" placeholder="100" name="reinvest-percentage" id="reinvest-percentage" min="0" max="100">% of equity <br>
 		Add
 		<input type="number" placeholder="10" name="reinvest-add-amount" id="reinvest-add-amount">€ when reinvesting
+
 		<hr>
 		Investments: <span id="iteration-counter">0</span> <br>
 		Days passed (avoiding Pattern Day Trader flagging*): <span id="days-counter-pdt">0</span>
