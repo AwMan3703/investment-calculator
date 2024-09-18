@@ -7,6 +7,18 @@
 		<link rel="shortcut icon" href="src/icon.ico" type="image/x-icon">
 	</head>
 	<body>
+		<h1>AwMan3703's ROI calculator</h1>
+
+		Simulated environment:
+		<button class="environment-preset-button" data-preset-id="easy">Easy</button>
+		<button class="environment-preset-button" data-preset-id="forgiving">Forgiving</button>
+		<button class="environment-preset-button" data-preset-id="medium">Medium</button>
+		<button class="environment-preset-button" data-preset-id="harsh">Harsh</button>
+		<button class="environment-preset-button" data-preset-id="difficult">Difficult</button>
+		(<a href="#" onclick="apply_preset(presets['blank'])">Clear</a>)
+
+		<hr>
+
 		<strong>Buy</strong> for
 		<input type="number" placeholder="100" name="investment" id="investment">€
 		when the asset is valued at

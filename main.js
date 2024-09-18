@@ -1,4 +1,6 @@
 
+const environment_preset_buttons = document.getElementsByClassName("environment-preset-button")
+
 const investment_input = document.getElementById("investment");
 const start_price_input = document.getElementById("start-price");
 const leverage_checkbox = document.getElementById("leverage-checkbox");
@@ -25,6 +27,36 @@ const months_counter_output = document.getElementById("months-counter-pdt");
 const end_date_output = document.getElementById("end-date-pdt");
 
 let ITERATION_COUNTER = 0
+
+const presets = {
+	"blank" : { // used for clearing inputs
+		fees : { maker: '', taker: '' }, // Fee percentages
+		min_fees : { maker: '', taker: '' } // Minimum fees
+	},
+	"easy" : {
+		fees : { maker: 0, taker: 0 },
+		min_fees : { maker: 0, taker: 0 }
+	},
+	"forgiving" : {
+		fees : { maker: .05, taker: .05 },
+		min_fees : { maker: .5, taker: .5 }
+	},
+	"medium" : {
+		fees : { maker: .25, taker: .25 },
+		min_fees : { maker: 1, taker: 1 }
+	},
+	"harsh" : {
+		fees : { maker: .5, taker: .5 },
+		min_fees : { maker: 2, taker: 3.5 }
+	},
+	"difficult" : {
+		fees : { maker: 1, taker: 1 },
+		min_fees : { maker: 5, taker: 7 }
+	}
+}
+
+let first_investment = 0;
+let cumulative_profit = 0
 
 
 
@@ -75,6 +107,13 @@ function reset_metrics() {
 	months_counter_output.innerText = '~ ' + String(0)
 }
 
+function apply_preset(preset) {
+	buy_fee_input.value = preset.fees.maker
+	min_buy_fee_input.value = preset.min_fees.maker
+	sell_fee_input.value = preset.fees.taker
+	min_sell_fee_input.value = preset.min_fees.taker
+}
+
 function run(reinvest) {
 	const inputs = getInputs()
 
@@ -111,6 +150,11 @@ function run(reinvest) {
 }
 
 
+for (const button of environment_preset_buttons) {
+	button.onclick = _ => {
+		apply_preset(presets[button.dataset.presetId])
+	}
+}
 
 leverage_checkbox.onclick = _ => {
 	leverage_multiplier_input.toggleAttribute('disabled')
