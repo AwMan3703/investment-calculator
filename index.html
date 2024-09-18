@@ -29,7 +29,8 @@
 		<hr>
 
 		<button id="button-start">Compute</button>
-		<h3>Return: <span id="profit">0</span>€</h3>
+		<h2>Return: <span id="return">0</span>€</h2>
+		<h4>Profit: <span id="trade-profit">0</span>%, cumulative: <span id="cumulative-profit">0</span>%</h4>
 		<button id="button-reinvest">Reinvest (drop cents)</button> <br>
 		Reinvest
 		<input type="number" placeholder="100" name="reinvest-percentage" id="reinvest-percentage" min="0" max="100">% of equity <br>
@@ -37,11 +38,15 @@
 		<input type="number" placeholder="10" name="reinvest-add-amount" id="reinvest-add-amount">€ when reinvesting
 
 		<hr>
-		Investments: <span id="iteration-counter">0</span> <br>
-		Days passed (avoiding Pattern Day Trader flagging*): <span id="days-counter-pdt">0</span>
-		/ Weeks: <span id="weeks-counter-pdt">0</span>
-		/ Months: <span id="months-counter-pdt">0</span> <br>
-		<sup>*Regulations demand that if you have less than 25k you may not buy more than 3 times per week, else you be flagged as a Pattern Day Trader and your account suspended</sup>
+
+		<div id="metrics">
+			Investments: <span id="iteration-counter">0</span> <br>
+			Days passed (avoiding Pattern Day Trader flagging*): <span id="days-counter-pdt">0</span>
+			/ Weeks: <span id="weeks-counter-pdt">0</span>
+			/ Months: <span id="months-counter-pdt">0</span>
+			— ending on: <span id="end-date-pdt">N/A</span> <br>
+			<sup>*Regulations demand that if you have less than 25k you may not buy more than 3 times per week, else you be flagged as a Pattern Day Trader and your account suspended</sup>
+		</div>
 
 
 		<script src="main.js"></script>

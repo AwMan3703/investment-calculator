@@ -14,12 +14,15 @@ const reinvest_add_amount_input = document.getElementById("reinvest-add-amount")
 const start_button = document.getElementById("button-start");
 const reinvest_button = document.getElementById("button-reinvest");
 
-const result_output = document.getElementById("profit");
+const result_output = document.getElementById("return");
+const profit_output = document.getElementById("trade-profit");
+const cumulative_profit_output = document.getElementById("cumulative-profit");
 
 const iteration_counter_output = document.getElementById("iteration-counter");
 const days_counter_output = document.getElementById("days-counter-pdt");
 const weeks_counter_output = document.getElementById("weeks-counter-pdt");
 const months_counter_output = document.getElementById("months-counter-pdt");
+const end_date_output = document.getElementById("end-date-pdt");
 
 let ITERATION_COUNTER = 0
 
@@ -53,10 +56,15 @@ function compute(investment, start_price, leverage_multiplier, end_price, buy_fe
 
 function update_metrics() {
 	ITERATION_COUNTER += 1
+	const days_delta = parseInt(String((ITERATION_COUNTER / 3) * 7).split(/[,.]/gm)[0])
 	iteration_counter_output.innerText = String(ITERATION_COUNTER)
-	days_counter_output.innerText = String((ITERATION_COUNTER / 3) * 7).split(/[,.]/gm)[0]
+	days_counter_output.innerText = days_delta
 	weeks_counter_output.innerText = String(ITERATION_COUNTER / 3).split(/[,.]/gm)[0]
 	months_counter_output.innerText = '~ ' + String((ITERATION_COUNTER / 3) / 4).split(/[,.]/gm)[0]
+
+	const start_date = new Date()
+	const end_date = new Date(start_date.setDate(start_date.getDate() + days_delta))
+	end_date_output.innerText = end_date.toLocaleDateString("en-GB") // dd/mm/yyyy is superior
 }
 
 function reset_metrics() {
@@ -69,8 +77,10 @@ function reset_metrics() {
 
 function run(reinvest) {
 	const inputs = getInputs()
+
+	if (!reinvest) { first_investment = inputs.investment }
 	
-	result_output.innerText = compute(
+	const result = compute(
 		inputs.investment,
 		inputs.startprice,
 		inputs.useleverage ? inputs.leveragemultiplier : 1,
@@ -80,6 +90,16 @@ function run(reinvest) {
 		inputs.sellfee,
 		inputs.minsellfee
 	)
+	result_output.innerText = result.toFixed(4)
+
+	const profit = (((result - inputs.investment) / inputs.investment) * 100).toFixed(2)
+	profit_output.innerText = (profit >= 0 ? '+' : '') + profit
+	profit_output.className = "profit-counter " + (profit > 0 ? "positive" : profit < 0 ? "negative" : "zero")
+
+	cumulative_profit = (((result - first_investment) / first_investment) * 100).toFixed(2)
+	cumulative_profit_output.innerText = (cumulative_profit >= 0 ? '+' : '') + cumulative_profit
+	cumulative_profit_output.className = "profit-counter " + (cumulative_profit > 0 ? "positive" : cumulative_profit < 0 ? "negative" : "zero")
+
 	if (reinvest===true) {
 		console.log(`reinvest=${reinvest} - updating metrics`)
 		update_metrics()
